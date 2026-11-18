@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guía de Staff Starblox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#000; --surface:#0c0c0c; --line:#262626; --line-2:#363636;
+  --text:#ededed; --muted:#9a9a9a; --faint:#5c5c5c; --white:#fff;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px}
+header{padding:88px 0 48px;border-bottom:1px solid var(--line)}
+h1{margin:0;font-weight:700;letter-spacing:-.045em;line-height:.95;font-size:clamp(44px,10vw,96px);color:var(--white)}
+h1 span{color:var(--faint)}
+.lead{margin:24px 0 0;max-width:50ch;color:var(--muted);font-size:19px}
+.notice{margin:36px 0 0;padding:20px 24px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--white);border-radius:4px}
+.notice p{margin:0}
+.notice strong,b{color:var(--white);font-weight:600}
+b{color:var(--text)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:4px;overflow-x:auto;padding-top:10px;padding-bottom:10px;scrollbar-width:none}
+nav .wrap::-webkit-scrollbar{display:none}
+nav a{flex:none;padding:6px 14px;border-radius:999px;color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;border:1px solid transparent;transition:color .15s,border-color .15s}
+nav a:hover,nav a:focus-visible{color:var(--white);border-color:var(--line-2);outline:none}
+section{padding:48px 0 2px}
+section>h2{margin:0 0 4px;font-size:28px;font-weight:600;letter-spacing:-.02em;color:var(--white)}
+.sub{margin:0 0 8px;color:var(--faint);font-size:15px}
+.item{padding:16px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.item h3{margin:0 0 2px;font-size:19px;font-weight:600;color:var(--white)}
+.item h3 small{font-size:13px;font-weight:500;color:var(--faint);margin-left:8px}
+.desc{margin:0 0 8px;color:var(--faint);font-size:15px}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px}
+.steps li{display:flex;align-items:baseline;gap:10px;color:var(--muted)}
+.steps .e{flex:none;width:1.4em;text-align:center}
+.note{margin:8px 0 0;color:var(--muted);max-width:66ch}
+.kv{display:grid;grid-template-columns:96px 1fr;gap:2px 14px;margin:0;color:var(--muted)}
+.kv dt{color:var(--faint);font-size:15px}
+.kv dd{margin:0}
+
+/* cadena de mando */
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:6px 0 0}
+.chip{padding:3px 12px;border:1px solid var(--line-2);border-radius:999px;font-size:14px;font-weight:600;color:var(--text);background:var(--surface)}
+.chain i{font-style:normal;color:var(--faint)}
+.chain.full .chip{border-color:var(--faint)}
+.chip.top{background:var(--white);color:#000;border-color:var(--white)}
+.team{margin:0 0 4px;font-size:15px;color:var(--muted)}
+
+/* tabla */
+.scroll{overflow-x:auto;margin-top:8px;border:1px solid var(--line);border-radius:4px}
+table{width:100%;min-width:640px;border-collapse:collapse;font-size:15px}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--white);font-weight:600;background:var(--surface)}
+td{color:var(--muted)}
+td:first-child{color:var(--text);font-weight:500;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+
+.callout{margin:12px 0 0;padding:16px 20px;background:var(--surface);border:1px solid var(--line);border-radius:4px;color:var(--muted)}
+.callout h4{margin:0 0 4px;font-size:16px;font-weight:600;color:var(--white)}
+.callout p{margin:0 0 6px}.callout p:last-child{margin:0}
+
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+.col{padding:16px 20px;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
+.col h3{margin:0 0 8px;font-size:18px;color:var(--white)}
+.col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;color:var(--muted)}
+.seq{counter-reset:s;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;color:var(--muted)}
+.seq li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:baseline}
+.seq li::before{content:counter(s);color:var(--line-2);font-weight:700;font-size:26px;line-height:1;letter-spacing:-.04em}
+
+footer{margin-top:48px;padding:28px 0 56px;border-top:1px solid var(--line);color:var(--faint);font-size:14px}
+footer p{margin:0 0 4px}
+@media (max-width:620px){
+  header{padding:64px 0 36px}
+  section{padding-top:40px}
+  .kv{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>📖 Guía de<br><span>Staff Starblox</span></h1>
+    <p class="lead">Moderación y protocolo interno. Cadena de mando, tipos de infracciones, sanciones y cómo actuar paso a paso.</p>
+    <div class="notice">
+      <p><strong>⚠️ Atención:</strong> esta guía es de uso interno. Leerla es obligatorio, y aplicarla mal puede terminar en <strong>warn, strike o demote</strong>.</p>
+    </div>
+  </div>
+</header>
+
+<nav aria-label="Secciones">
+  <div class="wrap">
+    <a href="#mando">🏛️ Jerarquía</a>
+    <a href="#reglas">🛡️ Reglas de oro</a>
+    <a href="#warns">⚖️ Advertencias</a>
+    <a href="#infracciones">🔎 Infracciones</a>
+    <a href="#tabla">📊 Tabla rápida</a>
+    <a href="#protocolo">📌 Protocolo</a>
+    <a href="#dia">🎫 Día a día</a>
+    <a href="#glosario">📚 Glosario</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="mando">
+    <h2>🏛️ Cadena de mando</h2>
+    <p class="sub">Todos los rangos del servidor, de menor a mayor.</p>
+    <div class="item">
+      <h3>⚔️ Moderation Team</h3>
+      <p class="desc">Atienden el chat y los tickets del día a día.</p>
+      <div class="chain"><span class="chip">T-MOD</span><i>→</i><span class="chip">MOD</span><i>→</i><span class="chip">SR.MOD</span><i>→</i><span class="chip">ADMIN</span></div>
+    </div>
+    <div class="item">
+      <h3>🛡️ High Management</h3>
+      <p class="desc">Supervisan al equipo y resuelven los casos que el Moderation Team escala.</p>
+      <div class="chain"><span class="chip">FOI</span><i>→</i><span class="chip">SSC</span><i>→</i><span class="chip">CM</span></div>
+    </div>
+    <div class="item">
+      <h3>👑 Executive Team</h3>
+      <p class="desc">Dirección del servidor. Solo se les contacta por el conducto regular.</p>
+      <div class="chain"><span class="chip">EBM</span><i>→</i><span class="chip">EBL</span><i>→</i><span class="chip">CAO</span><i>→</i><span class="chip">COO</span><i>→</i><span class="chip top">CEO</span></div>
+    </div>
+    <div class="item">
+      <h3>📊 Escala completa <small>ascendente</small></h3>
+      <div class="chain full">
+        <span class="chip">T-MOD</span><i>→</i><span class="chip">MOD</span><i>→</i><span class="chip">SR.MOD</span><i>→</i><span class="chip">ADMIN</span><i>→</i><span class="chip">FOI</span><i>→</i><span class="chip">SSC</span><i>→</i><span class="chip">CM</span><i>→</i><span class="chip">EBM</span><i>→</i><span class="chip">EBL</span><i>→</i><span class="chip">CAO</span><i>→</i><span class="chip">COO</span><i>→</i><span class="chip top">CEO</span>
+      </div>
+      <p class="note">🤝 Tener un rango más alto no te da la razón: todos, sin importar el rango, siguen las mismas reglas.</p>
+    </div>
+    <div class="item">
+      <h3>🏷️ Roles y nombres completos</h3>
+      <p class="desc">Así aparece cada rango en el servidor.</p>
+      <div class="scroll"><table>
+        <thead><tr><th>Rol</th><th>Nombre completo</th><th>Equipo</th></tr></thead>
+        <tbody>
+          <tr><td>👑 CEO</td><td>Chief Executive Officer</td><td>Executive Team</td></tr>
+          <tr><td>👑 COO</td><td>Chief Operating Officer</td><td>Executive Team</td></tr>
+          <tr><td>👑 CAO</td><td>Chief Administrative Officer</td><td>Executive Team</td></tr>
+          <tr><td>👑 EBL</td><td>Executive Board Lead</td><td>Executive Team</td></tr>
+          <tr><td>👑 EBM</td><td>Executive Board Member</td><td>Executive Team</td></tr>
+          <tr><td>🛡️ CM</td><td>Community Manager</td><td>High Management</td></tr>
+          <tr><td>🛡️ SSC</td><td>Starblox Server Coordinator</td><td>High Management</td></tr>
+          <tr><td>🛡️ FOI</td><td>Field Operations Inspector</td><td>High Management</td></tr>
+          <tr><td>⚔️ ADMIN</td><td>Administrator</td><td>Moderation Team</td></tr>
+          <tr><td>⚔️ SR.MOD</td><td>Senior Moderator</td><td>Moderation Team</td></tr>
+          <tr><td>⚔️ MOD</td><td>Moderator</td><td>Moderation Team</td></tr>
+          <tr><td>⚔️ T-MOD</td><td>Trial Moderator</td><td>Moderation Team</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">📌 Los roles de equipo (<b>Executive Team</b>, <b>Management Team</b> y <b>Moderation Team</b>) agrupan a cada nivel, y <b>Staff Team</b> es el rol general que tiene todo el staff.</p>
+    </div>
+  </section>
+
+  <section id="reglas">
+    <h2>🛡️ Reglas de oro del staff</h2>
+    <p class="sub">Resumen de las reglas del equipo. Entrar al staff es para trabajar.</p>
+    <div class="item">
+      <h3>🚫 Uso del poder</h3>
+      <ul class="steps">
+        <li><span class="e">🚫</span><span><b>Cero abuso:</b> nada de <code>/mute</code>, <code>/kick</code> o <code>/ban</code> por risas o porque alguien te cayó mal.</span></li>
+        <li><span class="e">🤝</span><span><b>Amiguismos:</b> tus amigos no tienen corona. Si rompen las reglas, los sancionas igual.</span></li>
+        <li><span class="e">🧠</span><span><b>Criterio:</b> usa el cerebro, ni robot ni dictador. Ante la duda, pregunta antes de actuar.</span></li>
+      </ul>
+    </div>
+    <div class="item">
+      <h3>🤫 Confidencialidad</h3>
+      <ul class="steps">
+        <li><span class="e">🔒</span><span>Lo que pasa en el staff se queda en el staff: sin filtrar capturas ni chismear actualizaciones.</span></li>
+        <li><span class="e">👑</span><span>Sin hambre de rango: no pidas promotes ni permisos extra, el buen trabajo se reconoce solo.</span></li>
+        <li><span class="e">📜</span><span>Los logs son sagrados: nunca los borres ni los toques.</span></li>
+      </ul>
+    </div>
+    <div class="item">
+      <h3>🎭 Conducta</h3>
+      <ul class="steps">
+        <li><span class="e">🎬</span><span>Problemas con otro staff, por privado. Cero dramas ni indirectas en el chat general.</span></li>
+        <li><span class="e">🙏</span><span>Humildad: nada de amenazar con "cuidado que soy admin". Eres el ejemplo, no el matón.</span></li>
+        <li><span class="e">👤</span><span>Shadow modding: no avises a tus amigos para que borren cosas. Encubrir es ser igual de culpable.</span></li>
+      </ul>
+    </div>
+    <div class="item">
+      <h3>⚙️ Trabajo</h3>
+      <ul class="steps">
+        <li><span class="e">🟢</span><span>Actividad real: si desapareces 3 días sin avisar en <code>#ausencias</code>, pierdes el rango.</span></li>
+        <li><span class="e">🎫</span><span>Si estás conectado, estás disponible. Atiende los tickets abiertos antes de charlar en general.</span></li>
+        <li><span class="e">🛠️</span><span>No toques la configuración (canales, colores, bots) si nadie te lo pidió.</span></li>
+        <li><span class="e">📢</span><span><code>@everyone</code> y <code>@here</code> solo con permiso o en una emergencia real.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="warns">
+    <h2>⚖️ Sistema de advertencias</h2>
+    <p class="sub">Antes de pasar a una sanción mayor, se aplica este orden.</p>
+    <div class="item">
+      <h3>📋 Orden de aplicación</h3>
+      <ul class="steps">
+        <li><span class="e">1️⃣</span><span><b>Adv 1/2:</b> primera advertencia.</span></li>
+        <li><span class="e">2️⃣</span><span><b>Adv 2/2:</b> segunda advertencia.</span></li>
+        <li><span class="e">🔇</span><span>Si repite la falta y todas las advertencias son del mismo día → <b>mute</b>.</span></li>
+      </ul>
+    </div>
+    <div class="item">
+      <h3>🌅 Reinicio diario</h3>
+      <ul class="steps">
+        <li><span class="e">🔁</span><span>Las advertencias se reinician <b>todos los días</b>. Una adv de ayer ya no cuenta.</span></li>
+        <li><span class="e">⚠️</span><span>Si la primera adv es de ayer, el conteo vuelve a empezar en 1/2.</span></li>
+      </ul>
+    </div>
+    <div class="item">
+      <h3>⏱️ Mutes de referencia en el chat</h3>
+      <ul class="steps">
+        <li><span class="e">🗣️</span><span>Peleas: <b>15m–30m</b>. Si escala mucho, <b>1h</b> a todos los involucrados.</span></li>
+        <li><span class="e">🔔</span><span>Pings innecesarios a Executives: <b>30m</b> tras las dos advertencias.</span></li>
+        <li><span class="e">🔀</span><span>Desvío de canales: solo si se desvía <b>más de 2 veces</b>.</span></li>
+      </ul>
+      <p class="note">🫣 En Crosstrade solo hay 2 advertencias posibles, y el comercio de cuentas lleva <b>adv 1/1</b>; si continúa, warn.</p>
+    </div>
+  </section>
+
+  <section id="infracciones">
+    <h2>🔎 Tipos de infracciones</h2>
+    <p class="sub">Qué es cada falta y qué sanción se sugiere.</p>
+
+    <div class="item">
+      <h3>💬 Comunicación y chat</h3>
+      <p class="desc">Faltas que afectan la lectura y el ambiente del chat.</p>
+    </div>
+    <div class="item">
+      <h3>📚 Spam walltext</h3>
+      <dl class="kv"><dt>Definición</dt><dd>Bloques de texto excesivamente largos, repetitivos o desproporcionados que saturan la lectura.</dd><dt>Sanción</dt><dd><b>Warn</b> o <b>Timeout 1h</b>. Reincidencia: <b>Timeout 24h</b>.</dd></dl>
+    </div>
+    <div class="item">
+      <h3>🌊 Flood</h3>
+      <dl class="kv"><dt>Definición</dt><dd>Saturar el chat con muchos mensajes cortos, emojis, stickers o comandos de bots en pocos segundos.</dd><dt>Sanción</dt><dd>Borrado masivo de mensajes + <b>Timeout 2h–6h</b>.</dd></dl>
+    </div>
+    <div class="item">
+      <h3>📣 Spam / Autopromoción</h3>
+      <dl class="kv"><dt>Definición</dt><dd>Enlaces externos, invitaciones a otros servidores o redes sociales sin permiso previo.</dd><dt>Sanción</dt><dd>Eliminar el mensaje + <b>Timeout 12h</b>. Reincidencia o spam masivo por MD: <b>ban permanente</b>.</dd></dl>
+    </div>
+    <div class="item">
+      <h3>😡 Toxicidad / Faltas de respeto</h3>
+      <dl class="kv"><dt>Definición</dt><dd>Insultos directos, acoso, provocaciones constantes, discriminación o lenguaje ofensivo hacia miembros o staff.</dd><dt>Sanción</dt><dd><b>Timeout 6h–24h</b> según gravedad. Discurso de odio extremo o doxxing: <b>ban permanente directo</b>.</dd></dl>
+    </div>
+
+    <div class="item">
+      <h3>🔄 Comercio y mercado</h3>
+      <p class="desc">Las faltas más graves del trading.</p>
+    </div>
+    <div class="item">
+      <h3>💸 Crosstrade</h3>
+      <dl class="kv"><dt>Definición</dt><dd>Intercambiar ítems, cuentas, servicios o monedas de Starblox o juegos externos por dinero real, criptomonedas o activos de plataformas no permitidas.</dd><dt>Sanción</dt><dd><b>Ban permanente directo e inapelable</b>.</dd></dl>
+    </div>
+    <div class="item">
+      <h3>🤡 Clowntrade</h3>
+      <dl class="kv"><dt>Definición</dt><dd>Prácticas de burla o fraude de baja escala: manipular valores a propósito, ofertas falsas o troleo en negociaciones.</dd><dt>Sanción</dt><dd><b>Timeout 48h</b> o <b>Kick</b>. Estafa consumada: <b>ban permanente</b>.</dd></dl>
+    </div>
+    <div class="item">
+      <h3>🕵️ Scam / Estafa</h3>
+      <dl class="kv"><dt>Definición</dt><dd>Robo premeditado de ítems, cuentas o recursos con engaños, enlaces falsos (phishing) o suplantación de identidad.</dd><dt>Sanción</dt><dd><b>Ban permanente inmediato</b> y reporte en lista negra.</dd></dl>
+    </div>
+
+    <div class="item">
+      <h3>🎫 Soporte y formularios</h3>
+      <p class="desc">Abuso de los sistemas de ayuda del servidor.</p>
+    </div>
+    <div class="item">
+      <h3>🎪 Clownticket</h3>
+      <dl class="kv"><dt>Definición</dt><dd>Tickets abiertos sin motivo: vacíos, bromas, insultos al staff o reportes falsos.</dd><dt>Sanción</dt><dd>Cierre inmediato + <b>Timeout 12h–24h</b>. Reincidencia: bloqueo de permisos para abrir tickets.</dd></dl>
+    </div>
+    <div class="item">
+      <h3>📄 Clownform</h3>
+      <dl class="kv"><dt>Definición</dt><dd>Postulaciones o formularios con respuestas absurdas, troleo, contenido ofensivo o spam deliberado.</dd><dt>Sanción</dt><dd>Rechazo y eliminación directa + <b>Timeout 24h</b> o <b>ban temporal</b> según gravedad.</dd></dl>
+    </div>
+    <div class="item">
+      <h3>🔔 Ping / Mención innecesaria</h3>
+      <dl class="kv"><dt>Definición</dt><dd>Etiquetar repetidamente a un Executive sin motivo urgente o cuando ya existe el canal de tickets.</dd><dt>Sanción</dt><dd><b>Adv 1/2</b> → <b>adv 2/2</b> → <b>mute 30m</b>.</dd></dl>
+    </div>
+
+    <div class="item">
+      <h3>🚨 Seguridad grave</h3>
+      <p class="desc">Casos que ponen en riesgo el servidor.</p>
+    </div>
+    <div class="item">
+      <h3>👥 Evasión de sanción (alts)</h3>
+      <dl class="kv"><dt>Definición</dt><dd>Usar cuentas secundarias para evadir un Timeout, Kick o Ban activo en la cuenta principal.</dd><dt>Sanción</dt><dd><b>Ban permanente</b> de la alt, y la sanción de la cuenta principal se extiende o se mantiene.</dd></dl>
+    </div>
+    <div class="item">
+      <h3>💥 Raid / Ataque coordinado</h3>
+      <dl class="kv"><dt>Definición</dt><dd>Entrada masiva de usuarios o bots para destruir, saturar o sabotear los canales.</dd><dt>Sanción</dt><dd><b>Ban permanente inmediato</b> a todos los involucrados + modo lento y verificación alta.</dd></dl>
+    </div>
+  </section>
+
+  <section id="tabla">
+    <h2>📊 Tabla rápida de sanciones</h2>
+    <p class="sub">Para consultar en segundos. Desliza a los lados en el celular.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Infracción</th><th>Primera vez</th><th>Reincidencia o agravante</th></tr></thead>
+      <tbody>
+        <tr><td>📚 Spam walltext</td><td>Warn o Timeout 1h</td><td>Timeout 24h</td></tr>
+        <tr><td>🌊 Flood</td><td>Borrar mensajes + Timeout 2h–6h</td><td>—</td></tr>
+        <tr><td>📣 Autopromoción</td><td>Borrar + Timeout 12h</td><td>Ban permanente</td></tr>
+        <tr><td>😡 Toxicidad</td><td>Timeout 6h–24h</td><td>Odio extremo o doxxing: ban directo</td></tr>
+        <tr><td>💸 Crosstrade</td><td>Ban permanente directo</td><td>—</td></tr>
+        <tr><td>🤡 Clowntrade</td><td>Timeout 48h o Kick</td><td>Estafa consumada: ban permanente</td></tr>
+        <tr><td>🕵️ Scam</td><td>Ban permanente + lista negra</td><td>—</td></tr>
+        <tr><td>🎪 Clownticket</td><td>Cerrar + Timeout 12h–24h</td><td>Bloqueo de permisos de tickets</td></tr>
+        <tr><td>📄 Clownform</td><td>Rechazo + Timeout 24h o ban temporal</td><td>—</td></tr>
+        <tr><td>🔔 Ping a Executives</td><td>Adv 1/2 → 2/2</td><td>Mute 30m</td></tr>
+        <tr><td>👥 Alt accounts</td><td>Ban de la alt</td><td>La sanción principal se mantiene</td></tr>
+        <tr><td>💥 Raid</td><td>Ban permanente a todos</td><td>Modo lento + verificación alta</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section id="protocolo">
+    <h2>📌 Protocolo de actuación</h2>
+    <p class="sub">Cómo sancionar sin equivocarte.</p>
+    <div class="item">
+      <h3>🪜 Paso a paso</h3>
+      <ol class="seq">
+        <li><span><b>Revisa el contexto.</b> Lee los mensajes anteriores y confirma que hubo una falta real.</span></li>
+        <li><span><b>Identifica la infracción</b> y busca su sanción en esta guía.</span></li>
+        <li><span><b>Guarda la evidencia:</b> captura o registro en logs, antes de ejecutar.</span></li>
+        <li><span><b>Aplica la sanción</b> que corresponda: advertencia primero, salvo faltas graves.</span></li>
+        <li><span><b>Anota la razón</b> de forma clara, para que cualquier staff pueda revisarla.</span></li>
+        <li><span><b>Escala si hay dudas:</b> consulta por el conducto regular antes de actuar.</span></li>
+      </ol>
+    </div>
+    <div class="item">
+      <h3>🧾 Evidencia obligatoria</h3>
+      <ul class="steps">
+        <li><span class="e">📸</span><span>Toda sanción superior a una advertencia necesita captura o registro en logs <b>antes</b> de ejecutarse.</span></li>
+        <li><span class="e">🗒️</span><span>Todo ban o mute lleva razón clara y captura. Si el Owner o un Administrador pregunta y no hay pruebas, la responsabilidad es tuya.</span></li>
+        <li><span class="e">🚫</span><span>Nunca borres logs para ocultar una sanción.</span></li>
+      </ul>
+    </div>
+    <div class="item">
+      <h3>🪜 Conducto regular</h3>
+      <p class="desc">Para consultar dudas o escalar casos complejos, sube siempre por esta línea:</p>
+      <div class="chain"><span class="chip">T-MOD</span><i>→</i><span class="chip">MOD</span><i>→</i><span class="chip">SR.MOD</span><i>→</i><span class="chip">ADMIN</span><i>→</i><span class="chip">Management</span><i>→</i><span class="chip top">Executive Team</span></div>
+      <p class="note">⛔ No saltes rangos ni pinges directamente a los Executives si el caso se puede resolver más abajo.</p>
+    </div>
+  </section>
+
+  <section id="dia">
+    <h2>🎫 Día a día del staff</h2>
+    <div class="cols">
+      <div class="col">
+        <h3>✅ Haz</h3>
+        <ul>
+          <li>✅ Avisa en <code>#ausencias</code> si no estarás disponible.</li>
+          <li>✅ Atiende los tickets abiertos cuando estés conectado.</li>
+          <li>✅ Sanciona igual a tus amigos.</li>
+          <li>✅ Guarda pruebas de cada sanción.</li>
+          <li>✅ Pregunta si tienes dudas.</li>
+          <li>✅ Resuelve los problemas con otro staff por privado.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>❌ No hagas</h3>
+        <ul>
+          <li>❌ Sancionar por un meme o por antipatía.</li>
+          <li>❌ Filtrar capturas de canales privados.</li>
+          <li>❌ Tocar canales, bots o colores sin que te lo pidan.</li>
+          <li>❌ Pingear <code>@everyone</code> sin permiso.</li>
+          <li>❌ Pedir promotes o permisos extra.</li>
+          <li>❌ Amenazar con tu rango.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      <h4>💡 Antes de sancionar, pregúntate</h4>
+      <p>¿Tengo pruebas? ¿Es lo mismo que haría con cualquier otro miembro? ¿La sanción corresponde a la gravedad? Si alguna respuesta es "no", espera y consulta.</p>
+    </div>
+  </section>
+
+  <section id="glosario">
+    <h2>📚 Glosario</h2>
+    <div class="item">
+      <dl class="kv" style="grid-template-columns:110px 1fr;gap:8px 14px">
+        <dt>⚠️ Warn</dt><dd>Advertencia formal registrada. No quita permisos.</dd>
+        <dt>🔇 Mute / Timeout</dt><dd>Aislamiento temporal: el usuario no puede escribir ni hablar durante el tiempo indicado.</dd>
+        <dt>👢 Kick</dt><dd>Expulsión del servidor. Puede volver a entrar con una invitación.</dd>
+        <dt>🔨 Ban</dt><dd>Expulsión con bloqueo. Puede ser temporal o permanente.</dd>
+        <dt>⚡ Strike</dt><dd>Sanción interna a un miembro del staff por mal uso del sistema.</dd>
+        <dt>⬇️ Demote</dt><dd>Pérdida del rango de staff, que se baja a miembro.</dd>
+        <dt>🕵️ Alt</dt><dd>Cuenta secundaria de un usuario.</dd>
+        <dt>📄 Logs</dt><dd>Registro automático de acciones de moderación. Es intocable.</dd>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>⚠️ Advertencia · 🔇 Mute · 🚫 Sanción grave</p>
+    <p>Todos los derechos reservados btwyumii©</p>
+  </div>
+</footer>
+
+</body>
+</html>
